@@ -1,0 +1,17 @@
+=== Basic Information
+Author  : Zac Brown <zac@zacbrown.org>
+Date    : 11.20.2009
+License : BSD License
+
+SimpleVM was written for the purpose of demonstrating some
+basic techniques in implementing simple virtual machines.
+It stemmed from my time spent in a programming languages course
+and the professor asked me to teach a couple classes on basic
+virtual machines.
+
+This code isn't intended to be used for production systems however
+with some more work, its feasible that it could be used as such. It
+has a couple major weaknesses right now, mainly lack of any way to
+allocate memory and/or garbage collection with objects as well as
+a linear search style for looking up line numbers for jump labels.
+These are largely due to lack of time to fix these deficiencies.
