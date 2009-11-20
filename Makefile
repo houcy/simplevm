@@ -4,7 +4,7 @@
 
 SRC_DIR = ./src
 BIN_NAME = simplevm
-CFLAGS = -g
+CFLAGS = -g -Wall
 
 simplevm: $(SRC_DIR)/vm.o $(SRC_DIR)/stack.o
 	g++ $(CFLAGS) -o $(BIN_NAME) $(SRC_DIR)/vm.o $(SRC_DIR)/stack.o
