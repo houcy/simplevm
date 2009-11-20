@@ -10,6 +10,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <math.h>
 #include "include/vm.h"
 #include "include/stack.h"
 
@@ -186,7 +187,25 @@ void execute_goto(void)
     goto top_exec;
 
   ipow:
+    e1 = POP(); /* exponent */
+    e2 = POP(); /* base */
+    elem = (stack_element_p) malloc(sizeof(stack_element_t));
+    elem->type = 0x00001;
+    elem->data.dat_i = (int) pow(e2->data.dat_i, e1->data.dat_i);
+    free(e1); free(e2);
+    PUSH(elem);
+    goto top_exec;
+
   fpow:
+    e1 = POP(); /* exponent */
+    e2 = POP(); /* base */
+    elem = (stack_element_p) malloc(sizeof(stack_element_t));
+    elem->type = 0x00010;
+    elem->data.dat_f = (float) pow(e2->data.dat_f, e1->data.dat_f);
+    free(e1); free(e2);
+    PUSH(elem);
+    goto top_exec;
+
   ineg:
     elem = PEEK();
     elem->data.dat_i *= -1;
