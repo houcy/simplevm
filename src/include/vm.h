@@ -102,21 +102,19 @@ static const char *instr_strings[] = {
 
 typedef void* instruction_t;
 
-struct _operation_t
+typedef struct
 {
     instruction_t instr;
     char instr_str[6];
     data_t data;
-};
-typedef struct _operation_t operation_t;
+} operation_t;
 typedef operation_t* operation_p;
 
-struct _label_t
+typedef struct
 {
     char* label;
     int line;
-};
-typedef struct _label_t label_t;
+} label_t;
 typedef label_t* label_p;
 
 /* Function    : parse_file

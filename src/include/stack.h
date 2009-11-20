@@ -19,15 +19,13 @@
  ******************************************************************************/
 
 /* our simple VM supports 4 basic types below */
-union _data_t
+typedef union
 {
     int dat_i;
     float dat_f;
     char dat_c;
     char dat_s[MAX_STR_LEN];
-};
-typedef union _data_t data_t;
-typedef data_t* data_p;
+} data_t;
 
 /* stack element structure  */
 struct _stack_element_t
