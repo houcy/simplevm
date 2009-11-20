@@ -59,6 +59,8 @@ void execute_goto(void)
         if (strcmp(cur_op->instr_str, "MOD") == 0) { cur_op->instr = &&mod; }
         if (strcmp(cur_op->instr_str, "IPOW") == 0) { cur_op->instr = &&ipow; }
         if (strcmp(cur_op->instr_str, "FPOW") == 0) { cur_op->instr = &&fpow; }
+        if (strcmp(cur_op->instr_str, "I2F") == 0) { cur_op->instr = &&i2f; }
+        if (strcmp(cur_op->instr_str, "F2I") == 0) { cur_op->instr = &&f2i; }
         if (strcmp(cur_op->instr_str, "INEG") == 0) { cur_op->instr = &&ineg; }
         if (strcmp(cur_op->instr_str, "FNEG") == 0) { cur_op->instr = &&fneg; }
         if (strcmp(cur_op->instr_str, "ICMP") == 0) { cur_op->instr = &&icmp; }
@@ -89,7 +91,9 @@ void execute_goto(void)
     }
 
     stack_element_p elem, e1, e2, res;
-    int cur_line = 0;
+    float temp_f;
+    int  temp_i;
+    unsigned int cur_line = 0;
     operation_p cur_op;
   top_exec:
     if (cur_line >= lines.size()) exit(0);
@@ -204,6 +208,22 @@ void execute_goto(void)
     elem->data.dat_f = (float) pow(e2->data.dat_f, e1->data.dat_f);
     free(e1); free(e2);
     PUSH(elem);
+    goto top_exec;
+
+  i2f:
+    elem = PEEK();
+    temp_f = (float) elem->data.dat_i;
+    memset(&elem->data, 0, sizeof(data_t));
+    elem->data.dat_f = temp_f;
+    elem->type = 0x00010;
+    goto top_exec;
+
+  f2i:
+    elem = PEEK();
+    temp_i = (int) elem->data.dat_f;
+    memset(&elem->data, 0, sizeof(data_t));
+    elem->data.dat_i = temp_i;
+    elem->type = 0x00001;
     goto top_exec;
 
   ineg:
@@ -354,7 +374,7 @@ void execute_goto(void)
         else printf("unknown\n");
         ptr = ptr->next;
     }
-    printf("\n\n");
+    printf("\n");
     goto top_exec;
 }
 
@@ -441,7 +461,7 @@ int parse_file(char* filename)
 
 int get_label_loc(char* label)
 {
-    int jump_list_len = jump_list.size(), ret;
+    int jump_list_len = jump_list.size();
     for (int i = 0; i < jump_list_len; i++)
     {
         label_p cur_label = jump_list[i];

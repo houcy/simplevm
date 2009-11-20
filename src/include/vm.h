@@ -26,6 +26,8 @@ enum instr_enum
     MOD, /* int modulo */
     IPOW, /* int power */
     FPOW, /* float power */
+    I2F, /* int to float */
+    F2I, /* float to int */
     INEG, /* negate int */
     FNEG, /* negate float */
     /* control related */
@@ -71,6 +73,8 @@ static const char *instr_strings[] = {
     "MOD",
     "IPOW",
     "FPOW",
+    "I2F",
+    "F2I",
     "INEG",
     "FNEG",
     "ICMP",
