@@ -1,0 +1,10 @@
+    IPUSH 4
+    JMPZ TEST1
+    IPUSH 0
+    JMPZ TEST2
+TEST1:
+    IPUSH 8888
+    DUMP
+TEST2:
+    IPUSH 7777
+    DUMP
