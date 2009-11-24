@@ -48,46 +48,92 @@ void execute_goto(void)
     {
         operation_p cur_op = lines[i];
 
-        if (strcmp(cur_op->instr_str, "IADD") == 0) { cur_op->instr = &&iadd; }
-        if (strcmp(cur_op->instr_str, "FADD") == 0) { cur_op->instr = &&fadd; }
-        if (strcmp(cur_op->instr_str, "ISUB") == 0) { cur_op->instr = &&isub; }
-        if (strcmp(cur_op->instr_str, "FSUB") == 0) { cur_op->instr = &&fsub; }
-        if (strcmp(cur_op->instr_str, "IMUL") == 0) { cur_op->instr = &&imul; }
-        if (strcmp(cur_op->instr_str, "FMUL") == 0) { cur_op->instr = &&fmul; }
-        if (strcmp(cur_op->instr_str, "IDIV") == 0) { cur_op->instr = &&idiv; }
-        if (strcmp(cur_op->instr_str, "FDIV") == 0) { cur_op->instr = &&fdiv; }
-        if (strcmp(cur_op->instr_str, "MOD") == 0) { cur_op->instr = &&mod; }
-        if (strcmp(cur_op->instr_str, "IPOW") == 0) { cur_op->instr = &&ipow; }
-        if (strcmp(cur_op->instr_str, "FPOW") == 0) { cur_op->instr = &&fpow; }
-        if (strcmp(cur_op->instr_str, "I2F") == 0) { cur_op->instr = &&i2f; }
-        if (strcmp(cur_op->instr_str, "F2I") == 0) { cur_op->instr = &&f2i; }
-        if (strcmp(cur_op->instr_str, "INEG") == 0) { cur_op->instr = &&ineg; }
-        if (strcmp(cur_op->instr_str, "FNEG") == 0) { cur_op->instr = &&fneg; }
-        if (strcmp(cur_op->instr_str, "ICMP") == 0) { cur_op->instr = &&icmp; }
-        if (strcmp(cur_op->instr_str, "FCMP") == 0) { cur_op->instr = &&fcmp; }
-        if (strcmp(cur_op->instr_str, "CCMP") == 0) { cur_op->instr = &&ccmp; }
-        if (strcmp(cur_op->instr_str, "SCMP") == 0) { cur_op->instr = &&scmp; }
-        if (strcmp(cur_op->instr_str, "JMP") == 0) { cur_op->instr = &&jmp; }
-        if (strcmp(cur_op->instr_str, "JMPZ") == 0) { cur_op->instr = &&jmpz; }
-        if (strcmp(cur_op->instr_str, "IPUSH") == 0) { cur_op->instr = &&ipush; }
-        if (strcmp(cur_op->instr_str, "FPUSH") == 0) { cur_op->instr = &&fpush; }
-        if (strcmp(cur_op->instr_str, "CPUSH") == 0) { cur_op->instr = &&cpush; }
-        if (strcmp(cur_op->instr_str, "SPUSH") == 0) { cur_op->instr = &&spush; }
-        if (strcmp(cur_op->instr_str, "DROP") == 0) { cur_op->instr = &&drop; }
-        if (strcmp(cur_op->instr_str, "DUP") == 0) { cur_op->instr = &&dup; }
-        if (strcmp(cur_op->instr_str, "DUP2") == 0) { cur_op->instr = &&dup2; }
-        if (strcmp(cur_op->instr_str, "SWAP") == 0) { cur_op->instr = &&swap; }
-        if (strcmp(cur_op->instr_str, "ILOAD") == 0) { cur_op->instr = &&iload; }
-        if (strcmp(cur_op->instr_str, "FLOAD") == 0) { cur_op->instr = &&fload; }
-        if (strcmp(cur_op->instr_str, "CLOAD") == 0) { cur_op->instr = &&cload; }
-        if (strcmp(cur_op->instr_str, "SLOAD") == 0) { cur_op->instr = &&sload; }
-        if (strcmp(cur_op->instr_str, "ISTOR") == 0) { cur_op->instr = &&istor; }
-        if (strcmp(cur_op->instr_str, "FSTOR") == 0) { cur_op->instr = &&fstor; }
-        if (strcmp(cur_op->instr_str, "CSTOR") == 0) { cur_op->instr = &&cstor; }
-        if (strcmp(cur_op->instr_str, "SSTOR") == 0) { cur_op->instr = &&sstor; }
-        if (strcmp(cur_op->instr_str, "HALT") == 0) { cur_op->instr = &&halt; }
-        if (strcmp(cur_op->instr_str, "PRINT") == 0) { cur_op->instr = &&print; }
-        if (strcmp(cur_op->instr_str, "DUMP") == 0) { cur_op->instr = &&dump; }
+        if (strcmp(cur_op->instr_str, "IADD") == 0)
+        { cur_op->instr = &&iadd; }
+        else if (strcmp(cur_op->instr_str, "FADD") == 0)
+        { cur_op->instr = &&fadd; }
+        else if (strcmp(cur_op->instr_str, "ISUB") == 0)
+        { cur_op->instr = &&isub; }
+        else if (strcmp(cur_op->instr_str, "FSUB") == 0)
+        { cur_op->instr = &&fsub; }
+        else if (strcmp(cur_op->instr_str, "IMUL") == 0)
+        { cur_op->instr = &&imul; }
+        else if (strcmp(cur_op->instr_str, "FMUL") == 0)
+        { cur_op->instr = &&fmul; }
+        else if (strcmp(cur_op->instr_str, "IDIV") == 0)
+        { cur_op->instr = &&idiv; }
+        else if (strcmp(cur_op->instr_str, "FDIV") == 0)
+        { cur_op->instr = &&fdiv; }
+        else if (strcmp(cur_op->instr_str, "MOD") == 0)
+        { cur_op->instr = &&mod; }
+        else if (strcmp(cur_op->instr_str, "IPOW") == 0)
+        { cur_op->instr = &&ipow; }
+        else if (strcmp(cur_op->instr_str, "FPOW") == 0)
+        { cur_op->instr = &&fpow; }
+        else if (strcmp(cur_op->instr_str, "I2F") == 0)
+        { cur_op->instr = &&i2f; }
+        else if (strcmp(cur_op->instr_str, "F2I") == 0)
+        { cur_op->instr = &&f2i; }
+        else if (strcmp(cur_op->instr_str, "INEG") == 0)
+        { cur_op->instr = &&ineg; }
+        else if (strcmp(cur_op->instr_str, "FNEG") == 0)
+        { cur_op->instr = &&fneg; }
+        else if (strcmp(cur_op->instr_str, "ICMP") == 0)
+        { cur_op->instr = &&icmp; }
+        else if (strcmp(cur_op->instr_str, "FCMP") == 0)
+        { cur_op->instr = &&fcmp; }
+        else if (strcmp(cur_op->instr_str, "CCMP") == 0)
+        { cur_op->instr = &&ccmp; }
+        else if (strcmp(cur_op->instr_str, "SCMP") == 0)
+        { cur_op->instr = &&scmp; }
+        else if (strcmp(cur_op->instr_str, "JMP") == 0)
+        { cur_op->instr = &&jmp; }
+        else if (strcmp(cur_op->instr_str, "JMPZ") == 0)
+        { cur_op->instr = &&jmpz; }
+        else if (strcmp(cur_op->instr_str, "IPUSH") == 0)
+        { cur_op->instr = &&ipush; }
+        else if (strcmp(cur_op->instr_str, "FPUSH") == 0)
+        { cur_op->instr = &&fpush; }
+        else if (strcmp(cur_op->instr_str, "CPUSH") == 0)
+        { cur_op->instr = &&cpush; }
+        else if (strcmp(cur_op->instr_str, "SPUSH") == 0)
+        { cur_op->instr = &&spush; }
+        else if (strcmp(cur_op->instr_str, "DROP") == 0)
+        { cur_op->instr = &&drop; }
+        else if (strcmp(cur_op->instr_str, "DUP") == 0)
+        { cur_op->instr = &&dup; }
+        else if (strcmp(cur_op->instr_str, "DUP2") == 0)
+        { cur_op->instr = &&dup2; }
+        else if (strcmp(cur_op->instr_str, "SWAP") == 0)
+        { cur_op->instr = &&swap; }
+        else if (strcmp(cur_op->instr_str, "ILOAD") == 0)
+        { cur_op->instr = &&iload; }
+        else if (strcmp(cur_op->instr_str, "FLOAD") == 0)
+        { cur_op->instr = &&fload; }
+        else if (strcmp(cur_op->instr_str, "CLOAD") == 0)
+        { cur_op->instr = &&cload; }
+        else if (strcmp(cur_op->instr_str, "SLOAD") == 0)
+        { cur_op->instr = &&sload; }
+        else if (strcmp(cur_op->instr_str, "ISTOR") == 0)
+        { cur_op->instr = &&istor; }
+        else if (strcmp(cur_op->instr_str, "FSTOR") == 0)
+        { cur_op->instr = &&fstor; }
+        else if (strcmp(cur_op->instr_str, "CSTOR") == 0)
+        { cur_op->instr = &&cstor; }
+        else if (strcmp(cur_op->instr_str, "SSTOR") == 0)
+        { cur_op->instr = &&sstor; }
+        else if (strcmp(cur_op->instr_str, "HALT") == 0)
+        { cur_op->instr = &&halt; }
+        else if (strcmp(cur_op->instr_str, "PRINT") == 0)
+        { cur_op->instr = &&print; }
+        else if (strcmp(cur_op->instr_str, "DUMP") == 0)
+        { cur_op->instr = &&dump; }
+        else
+        {
+            printf("ERROR: invalid instruction \"%s\", exiting.\n",
+                cur_op->instr_str);
+            exit(-3);
+        }
     }
 
     stack_element_p elem, e1, e2, res;
@@ -213,7 +259,6 @@ void execute_goto(void)
   i2f:
     elem = PEEK();
     temp_f = (float) elem->data.dat_i;
-    memset(&elem->data, 0, sizeof(data_t));
     elem->data.dat_f = temp_f;
     elem->type = 0x00010;
     goto top_exec;
@@ -221,7 +266,6 @@ void execute_goto(void)
   f2i:
     elem = PEEK();
     temp_i = (int) elem->data.dat_f;
-    memset(&elem->data, 0, sizeof(data_t));
     elem->data.dat_i = temp_i;
     elem->type = 0x00001;
     goto top_exec;
