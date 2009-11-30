@@ -122,6 +122,8 @@ void execute_goto(void)
         { cur_op->instr = &&cstor; }
         else if (strcmp(cur_op->instr_str, "SSTOR") == 0)
         { cur_op->instr = &&sstor; }
+        else if (strcmp(cur_op->instr_str, "TYPE") == 0)
+        { cur_op->instr = &&type; }
         else if (strcmp(cur_op->instr_str, "HALT") == 0)
         { cur_op->instr = &&halt; }
         else if (strcmp(cur_op->instr_str, "PRINT") == 0)
@@ -402,6 +404,15 @@ void execute_goto(void)
   fstor:
   cstor:
   sstor:
+  type:
+    elem = POP();
+    res = (stack_element_p) malloc(sizeof(stack_element_t));
+    res->type = res->data.type = 0x00001;
+    res->data.data.dat_i = elem->type;
+    free(elem);
+    PUSH(res);
+    goto top_exec;
+
   halt:
     elem = POP();
     exit(elem->data.data.dat_i);

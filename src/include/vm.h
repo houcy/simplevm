@@ -54,6 +54,7 @@ enum instr_enum
     FSTOR, /* float store */
     CSTOR, /* char store */
     SSTOR, /* string store */
+    TYPE,
     /* debug/sys oriented */
     HALT,
     PRINT,
@@ -99,6 +100,7 @@ static const char *instr_strings[] = {
     "FSTOR",
     "CSTOR",
     "SSTOR",
+    "TYPE",
     "HALT",
     "PRINT",
     "DUMP"
