@@ -70,6 +70,14 @@ void execute_goto(void)
         { cur_op->instr = &&ipow; }
         else if (strcmp(cur_op->instr_str, "FPOW") == 0)
         { cur_op->instr = &&fpow; }
+        else if (strcmp(cur_op->instr_str, "BOR") == 0)
+        { cur_op->instr = &&bor; }
+        else if (strcmp(cur_op->instr_str, "BAND") == 0)
+        { cur_op->instr = &&band; }
+        else if (strcmp(cur_op->instr_str, "LSHIFT") == 0)
+        { cur_op->instr = &&lshift; }
+        else if (strcmp(cur_op->instr_str, "RSHIFT") == 0)
+        { cur_op->instr = &&rshift; }
         else if (strcmp(cur_op->instr_str, "I2F") == 0)
         { cur_op->instr = &&i2f; }
         else if (strcmp(cur_op->instr_str, "F2I") == 0)
@@ -90,6 +98,10 @@ void execute_goto(void)
         { cur_op->instr = &&jmp; }
         else if (strcmp(cur_op->instr_str, "JMPZ") == 0)
         { cur_op->instr = &&jmpz; }
+        else if (strcmp(cur_op->instr_str, "LAND") == 0)
+        { cur_op->instr = &&land; }
+        else if (strcmp(cur_op->instr_str, "LOR") == 0)
+        { cur_op->instr = &&lor; }
         else if (strcmp(cur_op->instr_str, "IPUSH") == 0)
         { cur_op->instr = &&ipush; }
         else if (strcmp(cur_op->instr_str, "FPUSH") == 0)
@@ -276,6 +288,50 @@ void execute_goto(void)
     PUSH(elem);
     goto top_exec;
 
+  bor:
+    e1 = POP();
+    e2 = POP();
+    res = (stack_element_p) malloc(sizeof(stack_element_t));
+    res->data = (data_elem_p) malloc(sizeof(data_elem_t));
+    res->data->data.dat_i = e2->data->data.dat_i | e1->data->data.dat_i;
+    res->type = res->data->type = 0x00001;
+    free(e1->data); free(e1); free(e2->data); free(e2);
+    PUSH(res);
+    goto top_exec;
+
+  band:
+    e1 = POP();
+    e2 = POP();
+    res = (stack_element_p) malloc(sizeof(stack_element_t));
+    res->data = (data_elem_p) malloc(sizeof(data_elem_t));
+    res->data->data.dat_i = e2->data->data.dat_i & e1->data->data.dat_i;
+    res->type = res->data->type = 0x00001;
+    free(e1->data); free(e1); free(e2->data); free(e2);
+    PUSH(res);
+    goto top_exec;
+
+  lshift:
+    e1 = POP();
+    e2 = POP();
+    res = (stack_element_p) malloc(sizeof(stack_element_t));
+    res->data = (data_elem_p) malloc(sizeof(data_elem_t));
+    res->data->data.dat_i = e2->data->data.dat_i << e1->data->data.dat_i;
+    res->type = res->data->type = 0x00001;
+    free(e1->data); free(e1); free(e2->data); free(e2);
+    PUSH(res);
+    goto top_exec;
+
+  rshift:
+    e1 = POP();
+    e2 = POP();
+    res = (stack_element_p) malloc(sizeof(stack_element_t));
+    res->data = (data_elem_p) malloc(sizeof(data_elem_t));
+    res->data->data.dat_i = e2->data->data.dat_i >> e1->data->data.dat_i;
+    res->type = res->data->type = 0x00001;
+    free(e1->data); free(e1); free(e2->data); free(e2);
+    PUSH(res);
+    goto top_exec;
+
   i2f:
     elem = PEEK();
     temp_f = (float) elem->data->data.dat_i;
@@ -365,6 +421,32 @@ void execute_goto(void)
     if (elem->data->data.dat_i == 0)
         cur_line = get_label_loc(cur_op->data->data.dat_s);
     free(elem);
+    goto top_exec;
+
+  land:
+    e1 = POP();
+    e2 = POP();
+    res = (stack_element_p) malloc(sizeof(stack_element_t));
+    res->data = (data_elem_p) malloc(sizeof(data_elem_t));
+    res->type = res->data->type = 0x00001;
+    if (e1->data->data.dat_i && e2->data->data.dat_i)
+    { res->data->data.dat_i = 1; }
+    else res->data->data.dat_i = 0;
+    free(e1->data); free(e1); free(e2->data); free(e2);
+    PUSH(res);
+    goto top_exec;
+
+  lor:
+    e1 = POP();
+    e2 = POP();
+    res = (stack_element_p) malloc(sizeof(stack_element_t));
+    res->data = (data_elem_p) malloc(sizeof(data_elem_t));
+    res->type = res->data->type = 0x00001;
+    if (e1->data->data.dat_i || e2->data->data.dat_i)
+    { res->data->data.dat_i = 1; }
+    else res->data->data.dat_i = 0;
+    free(e1->data); free(e1); free(e2->data); free(e2);
+    PUSH(res);
     goto top_exec;
 
   ipush:

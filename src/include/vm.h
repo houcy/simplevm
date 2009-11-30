@@ -26,6 +26,11 @@ enum instr_enum
     MOD, /* int modulo */
     IPOW, /* int power */
     FPOW, /* float power */
+    /* bitwise operators */
+    BOR, /* logical or */
+    BAND, /* logical and */
+    LSHIFT, /* left shift */
+    RSHIFT, /* right shift */
     I2F, /* int to float */
     F2I, /* float to int */
     INEG, /* negate int */
@@ -37,6 +42,8 @@ enum instr_enum
     SCMP,
     JMP,
     JMPZ,
+    LAND,
+    LOR,
     /* data oriented */
     IPUSH,
     FPUSH,
@@ -78,6 +85,10 @@ static const char *instr_strings[] = {
     "MOD",
     "IPOW",
     "FPOW",
+    "BOR",
+    "BAND",
+    "LSHIFT",
+    "RSHIFT",
     "I2F",
     "F2I",
     "INEG",
@@ -88,6 +99,8 @@ static const char *instr_strings[] = {
     "SCMP",
     "JMP",
     "JMPZ",
+    "LAND",
+    "LOR",
     "IPUSH",
     "FPUSH",
     "CPUSH",
