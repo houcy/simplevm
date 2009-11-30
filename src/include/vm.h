@@ -55,6 +55,10 @@ enum instr_enum
     CSTOR, /* char store */
     SSTOR, /* string store */
     TYPE,
+    /* arrays */
+    ARRAY,
+    ARRLEN,
+    ARRIND,
     /* debug/sys oriented */
     HALT,
     PRINT,
@@ -101,6 +105,9 @@ static const char *instr_strings[] = {
     "CSTOR",
     "SSTOR",
     "TYPE",
+    "ARRAY",
+    "ARRLEN",
+    "ARRIND",
     "HALT",
     "PRINT",
     "DUMP"
@@ -112,7 +119,7 @@ typedef struct
 {
     instruction_t instr;
     char instr_str[6];
-    data_elem_t data;
+    data_elem_p data;
 } operation_t;
 typedef operation_t* operation_p;
 

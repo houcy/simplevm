@@ -26,19 +26,20 @@ typedef union
     char dat_c;
     char dat_s[MAX_STR_LEN];
 } data_t;
+typedef data_t* data_p;
 
 typedef struct
 {
     data_t data;
     int type;
 } data_elem_t;
-
+typedef data_elem_t* data_elem_p;
 
 
 /* stack element structure  */
 struct _stack_element_t
 {
-    data_elem_t data;
+    data_elem_p data;
     /*
      * Data type masks:
      *     empty   : 0x00000 -- this is only for the base element of the stack
@@ -49,6 +50,7 @@ struct _stack_element_t
      *     array   : 0x10000
      */
     int type;
+    int size; /* for use with arrays */
     struct _stack_element_t* next;
     struct _stack_element_t* previous;
 };
