@@ -604,9 +604,9 @@ void execute_goto(void)
         else if (ptr->type == 0x00010)
         { printf("float:%f\n", ptr->data->data.dat_f); }
         else if (ptr->type == 0x00100)
-        { printf("char:%c\n", ptr->data->data.dat_c); }
+        { printf("char:'%c'\n", ptr->data->data.dat_c); }
         else if (ptr->type == 0x01000)
-        { printf("string\"%s\"\n", ptr->data->data.dat_s); }
+        { printf("string:\"%s\"\n", ptr->data->data.dat_s); }
         else if (ptr->type == 0x10000)
         {
             printf("array:\n");
@@ -618,9 +618,9 @@ void execute_goto(void)
                 else if (ptr->data[index].type == 0x00010)
                 { printf("\tfloat:%f\n", ptr->data[index].data.dat_f); }
                 else if (ptr->data[index].type == 0x00100)
-                { printf("\tchar:%c\n", ptr->data[index].data.dat_c); }
+                { printf("\tchar:'%c'\n", ptr->data[index].data.dat_c); }
                 else if (ptr->data[index].type == 0x01000)
-                { printf("\tstring\"%s\"\n", ptr->data[index].data.dat_s); }
+                { printf("\tstring:\"%s\"\n", ptr->data[index].data.dat_s); }
                 else printf("\tunknown\n");
             }
         }
@@ -695,8 +695,14 @@ int parse_file(char* filename)
                             val_stream >> op_obj->data->data.dat_c;
                             break;
                         case 'J':
+                            val_stream >> s;
+                            strncpy(op_obj->data->data.dat_s,
+                                s.c_str(), MAX_STR_LEN);
+                            break;
                         case 'S':
                             val_stream >> s;
+                            s.erase(0,1);
+                            s.erase(s.size()-1,1);
                             strncpy(op_obj->data->data.dat_s,
                                 s.c_str(), MAX_STR_LEN);
                             break;
