@@ -110,7 +110,7 @@ typedef struct
 {
     instruction_t instr;
     char instr_str[6];
-    data_t data;
+    data_elem_t data;
 } operation_t;
 typedef operation_t* operation_p;
 

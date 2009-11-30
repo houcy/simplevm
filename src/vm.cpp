@@ -150,8 +150,8 @@ void execute_goto(void)
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->data.dat_i = e1->data.dat_i + e2->data.dat_i;
-    res->type = 0x00001;
+    res->data.data.dat_i = e1->data.data.dat_i + e2->data.data.dat_i;
+    res->type = res->data.type = 0x00001;
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
@@ -160,8 +160,8 @@ void execute_goto(void)
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->data.dat_f = e1->data.dat_f + e2->data.dat_f;
-    res->type = 0x00010;
+    res->data.data.dat_f = e1->data.data.dat_f + e2->data.data.dat_f;
+    res->type = res->data.type = 0x00010;
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
@@ -170,8 +170,8 @@ void execute_goto(void)
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->data.dat_i = e2->data.dat_i - e1->data.dat_i;
-    res->type = 0x00001;
+    res->data.data.dat_i = e2->data.data.dat_i - e1->data.data.dat_i;
+    res->type = res->data.type = 0x00001;
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
@@ -180,8 +180,8 @@ void execute_goto(void)
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->data.dat_f = e2->data.dat_f - e1->data.dat_f;
-    res->type = 0x00010;
+    res->data.data.dat_f = e2->data.data.dat_f - e1->data.data.dat_f;
+    res->type = res->data.type = 0x00010;
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
@@ -190,8 +190,8 @@ void execute_goto(void)
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->data.dat_i = e1->data.dat_i * e2->data.dat_i;
-    res->type = 0x00001;
+    res->data.data.dat_i = e1->data.data.dat_i * e2->data.data.dat_i;
+    res->type = res->data.type = 0x00001;
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
@@ -200,8 +200,8 @@ void execute_goto(void)
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->data.dat_f = e1->data.dat_f * e2->data.dat_f;
-    res->type = 0x00010;
+    res->data.data.dat_f = e1->data.data.dat_f * e2->data.data.dat_f;
+    res->type = res->data.type = 0x00010;
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
@@ -210,8 +210,8 @@ void execute_goto(void)
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->data.dat_i = e2->data.dat_i / e1->data.dat_i;
-    res->type = 0x00001;
+    res->data.data.dat_i = e2->data.data.dat_i / e1->data.data.dat_i;
+    res->type = res->data.type = 0x00001;
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
@@ -220,8 +220,8 @@ void execute_goto(void)
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->data.dat_f = e2->data.dat_f / e1->data.dat_f;
-    res->type = 0x00010;
+    res->data.data.dat_f = e2->data.data.dat_f / e1->data.data.dat_f;
+    res->type = res->data.type = 0x00010;
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
@@ -230,8 +230,8 @@ void execute_goto(void)
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->data.dat_i = e2->data.dat_i % e1->data.dat_i;
-    res->type = 0x00001;
+    res->data.data.dat_i = e2->data.data.dat_i % e1->data.data.dat_i;
+    res->type = res->data.type = 0x00001;
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
@@ -240,8 +240,8 @@ void execute_goto(void)
     e1 = POP(); /* exponent */
     e2 = POP(); /* base */
     elem = (stack_element_p) malloc(sizeof(stack_element_t));
-    elem->type = 0x00001;
-    elem->data.dat_i = (int) pow(e2->data.dat_i, e1->data.dat_i);
+    elem->type = elem->data.type = 0x00001;
+    elem->data.data.dat_i = (int) pow(e2->data.data.dat_i, e1->data.data.dat_i);
     free(e1); free(e2);
     PUSH(elem);
     goto top_exec;
@@ -250,44 +250,44 @@ void execute_goto(void)
     e1 = POP(); /* exponent */
     e2 = POP(); /* base */
     elem = (stack_element_p) malloc(sizeof(stack_element_t));
-    elem->type = 0x00010;
-    elem->data.dat_f = (float) pow(e2->data.dat_f, e1->data.dat_f);
+    elem->type = elem->data.type = 0x00010;
+    elem->data.data.dat_f = (float)pow(e2->data.data.dat_f, e1->data.data.dat_f);
     free(e1); free(e2);
     PUSH(elem);
     goto top_exec;
 
   i2f:
     elem = PEEK();
-    temp_f = (float) elem->data.dat_i;
-    elem->data.dat_f = temp_f;
-    elem->type = 0x00010;
+    temp_f = (float) elem->data.data.dat_i;
+    elem->data.data.dat_f = temp_f;
+    elem->type = elem->data.type = 0x00010;
     goto top_exec;
 
   f2i:
     elem = PEEK();
-    temp_i = (int) elem->data.dat_f;
-    elem->data.dat_i = temp_i;
-    elem->type = 0x00001;
+    temp_i = (int) elem->data.data.dat_f;
+    elem->data.data.dat_i = temp_i;
+    elem->type = elem->data.type = 0x00001;
     goto top_exec;
 
   ineg:
     elem = PEEK();
-    elem->data.dat_i *= -1;
+    elem->data.data.dat_i *= -1;
     goto top_exec;
 
   fneg:
     elem = PEEK();
-    elem->data.dat_f *= -1.0;
+    elem->data.data.dat_f *= -1.0;
     goto top_exec;
 
   icmp:
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->type = 0x00001;
-    if (e1->data.dat_i < e2->data.dat_i) res->data.dat_i = -1;
-    else if (e1->data.dat_i == e2->data.dat_i) res->data.dat_i = 0;
-    else res->data.dat_i = 1;
+    res->type = res->data.type = 0x00001;
+    if (e1->data.data.dat_i < e2->data.data.dat_i) res->data.data.dat_i = -1;
+    else if (e1->data.data.dat_i == e2->data.data.dat_i) res->data.data.dat_i = 0;
+    else res->data.data.dat_i = 1;
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
@@ -296,10 +296,10 @@ void execute_goto(void)
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->type = 0x00001;
-    if (e1->data.dat_f < e2->data.dat_f) res->data.dat_i = -1;
-    else if (e1->data.dat_f == e2->data.dat_f) res->data.dat_i = 0;
-    else res->data.dat_i = 1;
+    res->type = res->data.type = 0x00001;
+    if (e1->data.data.dat_f < e2->data.data.dat_f) res->data.data.dat_i = -1;
+    else if (e1->data.data.dat_f == e2->data.data.dat_f) res->data.data.dat_i = 0;
+    else res->data.data.dat_i = 1;
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
@@ -308,10 +308,10 @@ void execute_goto(void)
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->type = 0x00001;
-    if (e1->data.dat_c < e2->data.dat_c) res->data.dat_i = -1;
-    else if (e1->data.dat_c == e2->data.dat_c) res->data.dat_i = 0;
-    else res->data.dat_i = 1;
+    res->type = res->data.type = 0x00001;
+    if (e1->data.data.dat_c < e2->data.data.dat_c) res->data.data.dat_i = -1;
+    else if (e1->data.data.dat_c == e2->data.data.dat_c) res->data.data.dat_i = 0;
+    else res->data.data.dat_i = 1;
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
@@ -320,47 +320,48 @@ void execute_goto(void)
     e1 = POP();
     e2 = POP();
     res = (stack_element_p) malloc(sizeof(stack_element_t));
-    res->type = 0x00001;
-    res->data.dat_i = strcmp(e1->data.dat_s, e2->data.dat_s);
+    res->type = res->data.type = 0x00001;
+    res->data.data.dat_i = strcmp(e1->data.data.dat_s, e2->data.data.dat_s);
     free(e1); free(e2);
     PUSH(res);
     goto top_exec;
 
   jmp:
-    cur_line = get_label_loc(cur_op->data.dat_s);
+    cur_line = get_label_loc(cur_op->data.data.dat_s);
     goto top_exec;
 
   jmpz:
     elem = POP();
-    if (elem->data.dat_i == 0) cur_line = get_label_loc(cur_op->data.dat_s);
+    if (elem->data.data.dat_i == 0)
+        cur_line = get_label_loc(cur_op->data.data.dat_s);
     free(elem);
     goto top_exec;
 
   ipush:
     elem = (stack_element_p) malloc(sizeof(stack_element_t));
-    elem->type = 0x00001;
-    elem->data.dat_i = cur_op->data.dat_i;
+    elem->type = elem->data.type = 0x00001;
+    elem->data.data.dat_i = cur_op->data.data.dat_i;
     PUSH(elem);
     goto top_exec;
 
   fpush:
     elem = (stack_element_p) malloc(sizeof(stack_element_t));
-    elem->type = 0x00010;
-    elem->data.dat_f = cur_op->data.dat_f;
+    elem->type = elem->data.type = 0x00010;
+    elem->data.data.dat_f = cur_op->data.data.dat_f;
     PUSH(elem);
     goto top_exec;
 
   cpush:
     elem = (stack_element_p) malloc(sizeof(stack_element_t));
-    elem->type = 0x00100;
-    elem->data.dat_c = cur_op->data.dat_c;
+    elem->type = elem->data.type = 0x00100;
+    elem->data.data.dat_c = cur_op->data.data.dat_c;
     PUSH(elem);
     goto top_exec;
 
   spush:
     elem = (stack_element_p) malloc(sizeof(stack_element_t));
-    elem->type = 0x01000;
-    strcpy(elem->data.dat_s, cur_op->data.dat_s);
+    elem->type = elem->data.type = 0x01000;
+    strcpy(elem->data.data.dat_s, cur_op->data.data.dat_s);
     PUSH(elem);
     goto top_exec;
 
@@ -403,7 +404,7 @@ void execute_goto(void)
   sstor:
   halt:
     elem = POP();
-    exit(elem->data.dat_i);
+    exit(elem->data.data.dat_i);
 
   print:
   dump:
@@ -411,10 +412,14 @@ void execute_goto(void)
     stack_element_p ptr = PEEK();
     while(ptr != data_stack->base)
     {
-        if (ptr->type == 0x00001) printf("int:%d\n", ptr->data.dat_i);
-        else if (ptr->type == 0x00010) printf("float:%f\n", ptr->data.dat_f);
-        else if (ptr->type == 0x00100) printf("char:%c\n", ptr->data.dat_c);
-        else if (ptr->type == 0x01000) printf("string\"%s\"\n", ptr->data.dat_s);
+        if (ptr->type == 0x00001)
+        { printf("int:%d\n", ptr->data.data.dat_i); }
+        else if (ptr->type == 0x00010)
+        { printf("float:%f\n", ptr->data.data.dat_f); }
+        else if (ptr->type == 0x00100)
+        { printf("char:%c\n", ptr->data.data.dat_c); }
+        else if (ptr->type == 0x01000)
+        { printf("string\"%s\"\n", ptr->data.data.dat_s); }
         else printf("unknown\n");
         ptr = ptr->next;
     }
@@ -476,18 +481,19 @@ int parse_file(char* filename)
                     switch (instr_strings[op_test][0])
                     {
                         case 'I':
-                            val_stream >> op_obj->data.dat_i;
+                            val_stream >> op_obj->data.data.dat_i;
                             break;
                         case 'F':
-                            val_stream >> op_obj->data.dat_f;
+                            val_stream >> op_obj->data.data.dat_f;
                             break;
                         case 'C':
-                            val_stream >> op_obj->data.dat_c;
+                            val_stream >> op_obj->data.data.dat_c;
                             break;
                         case 'J':
                         case 'S':
                             val_stream >> s;
-                            strncpy(op_obj->data.dat_s, s.c_str(), MAX_STR_LEN);
+                            strncpy(op_obj->data.data.dat_s,
+                                s.c_str(), MAX_STR_LEN);
                             break;
                         default:
                             printf("WARNING: malformed data \"%s\"\n",
