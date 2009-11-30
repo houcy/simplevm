@@ -15,3 +15,26 @@ has a couple major weaknesses right now, mainly lack of any way to
 allocate memory and/or garbage collection with objects as well as
 a linear search style for looking up line numbers for jump labels.
 These are largely due to lack of time to fix these deficiencies.
+
+
+=== Caveats
+* New lines indicate the end of an operation, you can't have multiple
+  operations on the same line, so nothing like "IPUSH 5 IPUSH 5 IADD".
+  It would need to be:
+           IPUSH 5
+           IPUSH 5
+           IADD
+
+* Character operations
+  * CPUSH doesn't need any quotes or apostrophes surrounding a character.
+    ie: "CPUSH c" would push the character 'c' on the stack.
+  * Its possible that I'll add char type arithmetic/bitwise operations
+    at some later time, but it doesn't really make much sense for now.
+
+* No manual memory management for now so there's no real reason to have the
+  LOAD/STOR operations. They'll remain till I've decided they need to go
+  for good.
+
+* Array operations
+  * No way to modify an array after its created right now.
+  * Arrays cannot be nested yet.
